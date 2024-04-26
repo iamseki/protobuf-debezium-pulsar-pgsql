@@ -23,7 +23,7 @@ The Pulsar consumer cannot deserialize the Protobuf message without removing quo
       "price": 10.0
     }'
     ```
-- (Optional) A commented-out line demonstrates a workaround that seems to resolve the issue, but further investigation is needed.
+- (Optional) [A commented-out line demonstrates a workaround](https://github.com/iamseki/protobuf-debezium-pulsar-pgsql/blob/main/consumers/ts/index.ts#L35) that seems to resolve the issue, but further investigation is needed.
 
 ## Configs
 - Pulsar version: `apachepulsar/pulsar:3.2.2`

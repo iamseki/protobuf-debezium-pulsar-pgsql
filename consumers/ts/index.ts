@@ -30,9 +30,10 @@ const run = async () => {
       console.log(`received msgId: ${msg.getMessageId()}, decodedMsg: ${decodedMsg}`);
 
       // I which I could use directly msg.getData() like this:
-      //const product = Product.fromBinary(msg.getData());
+      const product = Product.fromBinary(msg.getData());
       // but just work with this:
-      const product = Product.fromBinary(decodedMsg);
+      //const product = Product.fromBinary(decodedMsg);
+      
       console.log(`msgId: ${msg.getMessageId()}, payload: ${JSON.stringify(product)}`);
     } catch (e) {
       console.log(`nack msg: ${msg.getMessageId()}`)
