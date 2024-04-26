@@ -1,0 +1,20 @@
+syntax = "proto3";
+
+package store.products.v1;
+
+option go_package = "github.com/iamseki/protobuf-debezium-pulsar/gen/go/store/v1/products";
+
+enum Action {
+  ACTION_UNSPECIFIED = 0;
+  ACTION_INSERT = 1;
+  ACTION_UPDATE = 2;
+  ACTION_DELETE = 3;
+}
+
+message Product {
+  int32 id = 1;
+  string name = 2;
+  string description = 3;
+  float price = 4;
+  Action action = 5;
+}

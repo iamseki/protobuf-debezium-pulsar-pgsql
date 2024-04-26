@@ -1,0 +1,12 @@
+version: v1
+plugins:
+  - name: go
+    out: gen/go
+    opt: paths=source_relative
+  - name: doc
+    out: docs
+    opt: markdown,README.md
+    strategy: all
+  - plugin: 'buf.build/community/timostamm-protobuf-ts:v2.9.1'
+    out: gen/ts
+    opt: generate_dependencies

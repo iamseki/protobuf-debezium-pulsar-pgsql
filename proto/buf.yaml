@@ -1,0 +1,5 @@
+version: v1
+name: buf.build/iamseki/protobuf-debezium-pulsar
+lint:
+  use:
+    - DEFAULT

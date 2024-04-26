@@ -1,0 +1,51 @@
+version: "3.8"
+
+services:
+  postgres:
+    image: postgres:15
+    command: "postgres -c 'config_file=/etc/postgresql/postgresql.conf'"
+    cpus: 0.5
+    mem_limit: 512MB
+    environment:
+      POSTGRES_PASSWORD: test
+      POSTGRES_USER: test
+      POSTGRES_PASSWORD: test
+      POSTGRES_DB: store
+    volumes:
+      - "./configs/postgres/postgres.conf:/etc/postgresql/postgresql.conf"
+      - ./init_data.sql:/docker-entrypoint-initdb.d/init_data.sql
+    ports:
+      - "5432:5432"
+    depends_on:
+      - pulsar
+
+  pulsar:
+    image: apachepulsar/pulsar:3.2.2
+    command: "bin/pulsar standalone"
+    ports:
+        - '7128:8080'
+        - '6650:6650'
+    volumes:
+        - pulsar_data:/pulsar/data
+        - pulsar_conf:/pulsar/conf
+
+  debezium:
+    image: debezium/server:2.6.1.Final
+    restart: on-failure
+    links:
+        - "postgres"
+        - "pulsar"
+    ports:
+        - '7080:8080'
+    volumes:
+        - './configs/debezium:/debezium/conf'
+        - debezium_data:/debezium/data
+    depends_on:
+      - postgres
+
+volumes:
+  postgres:
+  pulsar_data:
+  pulsar_conf:
+  postgres_data:
+  debezium_data:
