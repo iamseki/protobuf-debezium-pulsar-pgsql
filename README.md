@@ -27,9 +27,9 @@ The Pulsar consumer cannot deserialize the Protobuf message without removing quo
 
 ## Configs
 - Pulsar version: `apachepulsar/pulsar:3.2.2`
-- Debezium version: `debezium/server:2.6.1.Final` with config:
+- Debezium version: `debezium/server:2.6.1.Final` with [config](./configs/debezium/application.properties):
 
-      ```conf
+    ```
       debezium.sink.type=pulsar
       debezium.sink.pulsar.client.serviceUrl=pulsar://pulsar:6650
       debezium.source.connector.class=io.debezium.connector.postgresql.PostgresConnector
@@ -58,5 +58,5 @@ The Pulsar consumer cannot deserialize the Protobuf message without removing quo
       debezium.format.key.converter.schemas.enable=false
       debezium.format.value.schemas.enable=false
       debezium.source.binary.handling.mode=hex
-      ```
+    ```
 
